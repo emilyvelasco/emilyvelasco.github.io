@@ -1,49 +1,68 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+    .gfg {
+        width: 150px;
+        color: white;
+        font-size: 20px;
+        background-color: RGB(0, 150, 0);
+    }
+     
+    .gfg1 {
+        width: 50%;
+        color: white;
+        font-size: 20px;
+        background-color: RGB(0, 200, 0);
+    }
+     
+    h2 {
+        color: black;
+    }
+    </style>
 </head>
-<<body style="background-color: black;">>
+<body>
 
-<p style="color:white;font-family:courier;">The Birdbox, a little device that plays the sound of birdsong when it detects movement, was born out of a trip I took to the home of <a href="https://www.sr-ix.com">Tom Jennings</a>, an LA-based artist, hacker, queer activist, and <a href="https://www.ramblerlore.com">American Motors enthusiast</a>. I was there with a <a href="https://simonpenny.net/">friend</a> to take a look at a Morris Minor that Tom wants me to have as a project, but my friend and I spent a couple of hours hanging out with Tom, talking about his projects, of which there are many, and just vibing in his really cool space.</p> 
+<p>The Birdbox, a little device that plays the sound of birdsong when it detects movement, was born out of a trip I took to the home of <a href="https://www.sr-ix.com">Tom Jennings</a>, an LA-based artist, hacker, queer activist, and <a href="https://www.ramblerlore.com">American Motors enthusiast</a>. I was there with a <a href="https://simonpenny.net/">friend</a> to take a look at a Morris Minor that Tom wants me to have as a project, but my friend and I spent a couple of hours hanging out with Tom, talking about his projects, of which there are many, and just vibing in his really cool space.</p> 
 
-<p style="color:white;font-family:courier;">While having coffee in his living room, which contains, among other things, a bingo board, a giant sculpture of a neuron, and <a href="https://www.sr-ix.com/Archive/LGP-21/index.html">Librascope/General Precision LGP-21 Computer</a>, I noticed a little pile of circuitry sitting on a chair that was playing bird chirps.</p>
+<p>While having coffee in his living room, which contains, among other things, a bingo board, a giant sculpture of a neuron, and <a href="https://www.sr-ix.com/Archive/LGP-21/index.html">Librascope/General Precision LGP-21 Computer</a>, I noticed a little pile of circuitry sitting on a chair that was playing bird chirps.</p>
 
-<p style="color:white;font-family:courier;">After I got home that night, I kept thinking about that little bird gizmo, and how nice it would be to have something playing the sound of birds in my own space. That desire led to the creation of the Birdbox. 
+<p>After I got home that night, I kept thinking about that little bird gizmo, and how nice it would be to have something playing the sound of birds in my own space. That desire led to the creation of the Birdbox. 
 
-<p style="color:white;font-family:courier;">Like many of my projects, this one has been built to look vintage, and like what I’ve seen described as “<a href="https://twitter.com/robcruickshank/status/1603457226714357761">hampunk</a>,” an aesthetic manifesto that says “All electronic projects should aspire to looking somewhat like a Heathkit without getting too fancy.”
+<p>Like many of my projects, this one has been built to look vintage, and like what I’ve seen described as “<a href="https://twitter.com/robcruickshank/status/1603457226714357761">hampunk</a>,” an aesthetic manifesto that says “All electronic projects should aspire to looking somewhat like a Heathkit without getting too fancy.”
 
-<p style="color:white;font-family:courier;">During the development of this project, an online acquaintance mentioned to me that in Japan, many of the train stations have piped-in bird sounds. That inspired me to create a faux announcement that plays when the Birdbox is first turned on. After a short chime, it says, in Japanese, something along the lines of, “When motion is detected, the soothing sounds of birds will fill your space.”
+<p>During the development of this project, an online acquaintance mentioned to me that in Japan, many of the train stations have piped-in bird sounds. That inspired me to create a faux announcement that plays when the Birdbox is first turned on. After a short chime, it says, in Japanese, something along the lines of, “When motion is detected, the soothing sounds of birds will fill your space.”
 
-<h3 style="color:white;font-family:courier;">Technical details</h3>
+<h3>Technical details</h3>
 
-<p style="color:white;font-family:courier;">This project is based around the DFPlayer Mini, an inexpensive module that can play back audio files stored on a micro SD card without the need for an external amplifier. The DFPlayer Mini can be used as a standalone device, or in conjunction with a microcontroller. In this case, I chose to use an Arduino Nano. I don’t know anything about the operation of Tom’s bird-sound contraption, or what triggers it, but I decided I wanted mine to be motion-sensing. This functionality is provided by a PIR (passive infrared) module. I also experimented with a mini doppler radar motion-sensor I had on-hand, but I found that it was too sensitive. It was being triggered by the motion of things on the other side of walls, like plants swaying in the wind outside, so it went back into the parts bin for future use. 
+<p>This project is based around the DFPlayer Mini, an inexpensive module that can play back audio files stored on a micro SD card without the need for an external amplifier. The DFPlayer Mini can be used as a standalone device, or in conjunction with a microcontroller. In this case, I chose to use an Arduino Nano. I don’t know anything about the operation of Tom’s bird-sound contraption, or what triggers it, but I decided I wanted mine to be motion-sensing. This functionality is provided by a PIR (passive infrared) module. I also experimented with a mini doppler radar motion-sensor I had on-hand, but I found that it was too sensitive. It was being triggered by the motion of things on the other side of walls, like plants swaying in the wind outside, so it went back into the parts bin for future use. 
 
-<p style="color:white;font-family:courier;">The way the Birdbox works is simple: When the PIR sensor detects movement, it raises the voltage on its output line to 5V. When the Arduino sees that line go high, it gives the DFPlayer Mini module a command to play one of the audio files, selected at random, stored on its micro SD card. Volume control is provided by a potentiometer wired to the Arduino.
+<p>The way the Birdbox works is simple: When the PIR sensor detects movement, it raises the voltage on its output line to 5V. When the Arduino sees that line go high, it gives the DFPlayer Mini module a command to play one of the audio files, selected at random, stored on its micro SD card. Volume control is provided by a potentiometer wired to the Arduino.
 
-<p style="color:white;font-family:courier;">I gathered the audio for this project from Freesound.org, and edited what I downloaded into roughly 69 files about a minute or two in length each. I will not be providing those files here because I do not want to deal with making sure I have all the licensing requirements correct for each of them. You will have to download your own files. Of course, you don’t even have to use audio of birdsong. You could make your own project play dog barks or train horns, or clips from Lilo and Stitch if you wanted to. 
+<p>I gathered the audio for this project from Freesound.org, and edited what I downloaded into roughly 69 files about a minute or two in length each. I will not be providing those files here because I do not want to deal with making sure I have all the licensing requirements correct for each of them. You will have to download your own files. Of course, you don’t even have to use audio of birdsong. You could make your own project play dog barks or train horns, or clips from Lilo and Stitch if you wanted to. 
 
-<p style="color:white;font-family:courier;">I like my projects to be self-contained when possible, so I built the Birdbox to run off a single 18650 lithium-ion cell attached to a BMS board with 5V output. If you would like to build your own version of this project, you have options here. The project could be powered by way of the Arduino’s USB port, or the Arduino’s Vin pin, which takes an input voltage of 7-12 and drops it to the 5V the Arduino and the rest of the components of this project run on.
+<p>I like my projects to be self-contained when possible, so I built the Birdbox to run off a single 18650 lithium-ion cell attached to a BMS board with 5V output. If you would like to build your own version of this project, you have options here. The project could be powered by way of the Arduino’s USB port, or the Arduino’s Vin pin, which takes an input voltage of 7-12 and drops it to the 5V the Arduino and the rest of the components of this project run on.
 
-<h3 style="color:white;font-family:courier;">Bill of Materials</h3>
+<h3>Bill of Materials</h3>
 
-<ul style="color:white;font-family:courier;">
-<li style="color:white;font-family:courier;"><a href="https://store-usa.arduino.cc/products/arduino-nano?selectedStore=us">Arduino Nano</a></li>
-<li style="color:white;font-family:courier;"><a href="https://www.adafruit.com/product/189">PIR sensor</a></li>
-<li style="color:white;font-family:courier;"><a href="https://www.dfrobot.com/product-1121.html">DFPlayer Mini</a></li>
-<li style="color:white;font-family:courier;">Micro SD card</li>
-<li style="color:white;font-family:courier;">Potentiometer</li>
-<li style="color:white;font-family:courier;">Speaker</li>
-<li style="color:white;font-family:courier;">Wire for making connections</li>
-<li style="color:white;font-family:courier;">Perfboard, protoboard, stripboard, breadboard or some other surface to build your circuit on</li>
-<li style="color:white;font-family:courier;">Power switch (optional)</li>
-<li style="color:white;font-family:courier;">Enclosure (optional)</li>
+<ul>
+<li><a href="https://store-usa.arduino.cc/products/arduino-nano?selectedStore=us">Arduino Nano</a></li>
+<li><a href="https://www.adafruit.com/product/189">PIR sensor</a></li>
+<li><a href="https://www.dfrobot.com/product-1121.html">DFPlayer Mini</a></li>
+<li>Micro SD card</li>
+<li>Potentiometer</li>
+<li>Speaker</li>
+<li>Wire for making connections</li>
+<li>Perfboard, protoboard, stripboard, breadboard or some other surface to build your circuit on</li>
+<li>Power switch (optional)</li>
+<li>Enclosure (optional)</li>
 </ul>
 
-<h3 style="color:white;font-family:courier;">The Code</h3>
+<h3>The Code</h3>
 
-<p style="color:white;font-family:courier;">The code for the project is heavily based on the <a href="https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299">DFMini Player demo sketch</a> that DFRobot provides on its website. The primary changes I’ve made are adding code to trigger playback when motion is detected, making the volume level adjustable with a knob, and randomizing the order in which the files are played back.</p>
+<p>The code for the project is heavily based on the <a href="https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299">DFMini Player demo sketch</a> that DFRobot provides on its website. The primary changes I’ve made are adding code to trigger playback when motion is detected, making the volume level adjustable with a knob, and randomizing the order in which the files are played back.</p>
 
-<pre><code style="color:white;font-family:courier;">/* This sketch is heavily based on a demo code by 
+<pre><code>/* This sketch is heavily based on a demo code by 
 [Angelo qiao](Angelo.qiao@dfrobot.com) for DFRobot,
 but it replaces the function that plays a new mp3 file after 
 a set period of time with a function that plays a new mp3
@@ -208,8 +227,8 @@ void printDetail(uint8_t type, int value){
   
 }</code></pre>
 
-<h3 style="color:white;font-family:courier;">Wiring Diagram</h3>
-<p style="color:white;font-family:courier;">The wiring diagram shown below is sufficient to get Birdbox working, but not that it does not include wiring for a power supply. I did not include that because the power-supply wiring depends on whether you decide to power your project through the Arduino's USB port, the Arduino's Vin pin, or with a dedicated rechargeable battery, like I did</p>
+<h3>Wiring Diagram</h3>
+<p>The wiring diagram shown below is sufficient to get Birdbox working, but not that it does not include wiring for a power supply. I did not include that because the power-supply wiring depends on whether you decide to power your project through the Arduino's USB port, the Arduino's Vin pin, or with a dedicated rechargeable battery, like I did</p>
 <img src="birdboxwiring.png">
 </body>
 </html>
