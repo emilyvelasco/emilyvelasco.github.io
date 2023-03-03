@@ -21,12 +21,21 @@ a:link {
 
 /* visited link */
 a:visited {
-  color: green;
+  color: yellow;
 }
 h1 {
   text-align: center;
 }
-
+div.scroll {
+                margin:4px, 4px;
+                padding:4px;
+                background-color: green;
+                width: 500px;
+                height: 110px;
+                overflow-x: hidden;
+                overflow-y: auto;
+                text-align:justify;
+            }
 
 </style>
 </head>
@@ -77,7 +86,7 @@ h1 {
 
 <p>The code for the project is heavily based on the <a href="https://wiki.dfrobot.com/DFPlayer_Mini_SKU_DFR0299">DFMini Player demo sketch</a> that DFRobot provides on its website. The primary changes I’ve made are adding code to trigger playback when motion is detected, making the volume level adjustable with a knob, and randomizing the order in which the files are played back.</p>
 
-<pre><code>/* This sketch is heavily based on a demo code by 
+<div class="scroll"><pre><code>/* This sketch is heavily based on a demo code by 
 [Angelo qiao](Angelo.qiao@dfrobot.com) for DFRobot,
 but it replaces the function that plays a new mp3 file after 
 a set period of time with a function that plays a new mp3
@@ -240,6 +249,6 @@ void printDetail(uint8_t type, int value){
       break;
   }
   
-}</code></pre>
+}</code></pre></div>
 </body>
 </html>
