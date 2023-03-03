@@ -53,6 +53,8 @@ div.scroll {
 
 <p>During the development of this project, an online acquaintance mentioned to me that in Japan, many of the train stations have piped-in bird sounds. That inspired me to create a faux announcement that plays when the Birdbox is first turned on. After a short chime, it says, in Japanese, something along the lines of, “When motion is detected, the soothing sounds of birds will fill your space.”
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/r0L-8NASFu0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
 <h3>Technical details</h3>
 
 <p>This project is based around the DFPlayer Mini, an inexpensive module that can play back audio files stored on a micro SD card without the need for an external amplifier. The DFPlayer Mini can be used as a standalone device, or in conjunction with a microcontroller. In this case, I chose to use an Arduino Nano. I don’t know anything about the operation of Tom’s bird-sound contraption, or what triggers it, but I decided I wanted mine to be motion-sensing. This functionality is provided by a PIR (passive infrared) module. I also experimented with a mini doppler radar motion-sensor I had on-hand, but I found that it was too sensitive. It was being triggered by the motion of things on the other side of walls, like plants swaying in the wind outside, so it went back into the parts bin for future use. 
