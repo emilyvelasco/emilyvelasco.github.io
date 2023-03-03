@@ -162,7 +162,6 @@ void loop()
   val = digitalRead(inputPin);  // read input value
 
 
-
   if (val == HIGH) { //if the sensor is high
     if (!triggered){ //and not already high
      myDFPlayer.play(birdNumber);  //Play another mp3 
@@ -178,12 +177,7 @@ void loop()
       
      }
   }
-
-
-
-
-
-  
+ 
   if (myDFPlayer.available()) {
     printDetail(myDFPlayer.readType(), myDFPlayer.read()); //Print the detail message from DFPlayer to handle different errors and states.
   }
