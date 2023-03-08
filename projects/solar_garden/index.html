@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <style>
+    #main {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", monospace;
+      width: 50%;
+      margin: auto;
+
+    }
+
+    img {
+
+      max-width: 100%;
+      height: auto;
+      margin: auto;
+      display: block;
+    }
+
+    a:link {
+      color: yellow;
+    }
+
+    /* visited link */
+    a:visited {
+      color: red;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+
+
+  </style>
+</head>
+
+<body id="main">
+  <h1>Rooftop Garden</h1>
+  <img src="solar.jpg"
+  alt="A grainy black-and-white image of a solar panel on the eaves of a house.">
+<br>
+
+<h3>Gardening without a yard</h3>
+<p>I, like many millennials, do not own a home due to the high cost of housing these days. With homes come yards, and with yards come gardens. If you live in an apartment or a cottage, like me, you have to be creative if you want to experience the tranquility and joy of growing your own food at home.</p>
+
+<p>Fortunately for me, I live in a cottage with a flat roof, so even though I have no place to grow vegetables at ground level, I've got over 400 square feet of roof-top real estate available if I'm willing to grow vegetables in containters.</p>
+
+<p>The first year I grew vegetables on my roof, I started out small. Everything grew in nursery pots or buckets, and I watered things by hand, carrying a bucket of water up the ladder once, twice, or even three times a day. Water is heavy and I gave myself tennis elbow and bursitis carrying as much as 120 pounds of water up to the roof day after day, all summer long. I vowed to come up with a better solution.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Gy6p8PX4Qc8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h3>A scavenged solution</h3>
+<p>That solution came in the form of a hose bibb timer valve I found at the thrift store. For $5 I couldn't <em>not</em> buy it, and after purchasing it, I ran out to the hardware store and picked up a bunch of drip irrigation tubing and drippers. By running that tubing up to the roof and to my vegetables, I could save myself the labor of carrying water up there by hand.</p>
+<p>There was one small problem though: The timer ran off AA batteries and it uses them up way too fast. I was having to replace the battery every week or so, and that meant reprogramming the timer after each battery change. Fuck that.</p>
+
+<p>However, this presented me with a good opportunity for some tinkering. I had already been experimenting with reusing salvaged 18650 lithium-ion cells in my projects, and I thought, "Why not make the timer rechargeable?" And, beyond that, "Why not make it regargeable by the sun?"</p>
+
+<h3>Using sunlight</h3>
+<p>I had a cheap 12V solar panel in my stash of stuff, along with a battery management (BMS) board, so I cooked up a system that dropped the 12V from the panel down to 5V for the BMS. The BMS outputs the lithium battery's ~3.7V directly into the timer, which normally expects 3V from the two AA batteries it's supposed to run on. I gambled that the timer would be fine taking a little bit of extra voltage, and I was right.</p>
+
+<p>I mounted the panel on my eaves where it would almost always receive sunlight during the day, and to keep the battery and its support electronics safe from the elements, I housed them in a little snap-lock style food container I found at the dollar store. The whole thing was secured out of the direct sun (heat is bad for lithium batteries) with a magnet that holds it to the side of my cottage's air conditioner.</p>
+
+<h3>Does it work?</h3>
+
+<p>That little cobbled-together system has now been running for nearly two years, and it's had remarkable few problems. It successfully watered my rooftop garden for me at the peak of summer heat while I left town for a week without any of the plants dying, which was really great! It was instrumental in keeping <a href="https://twitter.com/MLE_Online/status/1381125820610011136">Sink Plant</a> alive for an entire growing season.</p>
+
+<figure>
+<img src="sinkplant.jpg">
+<figcaption>Sink Plant, a tomato seedling whose long saga took it from the sink of a motel bathroom to the roof of my cottage.</figcaption>
+</figure>
+
+<p>It's not been entirely trouble-free though. Its problems have come in three flavors: Ants, clouds, and mechanical failure. Let's talk about the ants to start.</p>
+
+<p>My system is blessed with two status LEDs. One tels me the solar panel is generating 12V and the other tells me if the battery is charging or charged. One week, I noticed that the valve wasn't opening. The status lights indicated everything was OK, so opened the valve to see if something had burned out. Upon opening it, I was greeted not with a burned component, but with many dozens of panicked ants trying to protect their larvae.</p>
+
+<iframe width="320" height="560" src="https://www.youtube.com/embed/KEHX_HYw0Sw" title="The solar irrigation system stopped working. Why? Ants." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p>The ants had taken up residence inside the the valve, maybe because it was near a convenient source of water, or maybe because it was safe from predators, or maybe because it was warm in there. When the valve tried to open, some of their less fortunate comrades got caught in its gears and bound the mechanism up. I shook them out, put the valve back together, and the system worked again. Two weeks later, it stopped working, and I found ants inside it once again. That time I glued some find metal mesh over the drain holes in the valve's enclosure, and it's kept the ants out since.</p>
+
+<p>Now let's discuss the issue with clouds. The first winter I kept the system running, I noticed that after several cloudy days, the battery LED showed the battery was no longer reaching a full charge. On a sunny day, the battery is often charged by 9:30 or 10 a.m., but during winter weather, the battery didn't seem to ever each a full charge before sunset. Several days of that meant the battery got drained to an unhealthy level.</p>
+
+<p>I fixed this by, first, replacing the battery with one that hadn't been abused, and, second, by upgrading the solar panel to something that generated more wattage. I don't have that problem anymore, even during an entire week of rain.</p>
+
+<p>Mechanical failure has been the most vexing issue to deal with. The first time I encountered this, I noticed the solar panel was generating power well, but the battery wasn't charging. I disconnected the valve from the panel/battery circuitry and found that the battery charged up easily. Once again, I opened up the valve to take a peek, and this time, I found that the gear affixed to the shaft of the motor that drive the valve had slipped out of place so that it no longer meshed with the gear next to it.</p>
+
+<p>The way the valve works is that when the microcontroller realizes it's time to water, it activates the motor. Though a gearbox, the motor rotates the valve into the open position. Coupled to that gearbox is a crude encoder wheel that tells the microcontroller whether the valve is in the open or closed position.</p>
+
+<p>When that little gear slipped out of place, the microcontroller activated the motor, but the valve and the encoder attached to it didn't move to the closed position. What that resulted in was the valve's microcontroller desperately trying to close the valve when time was up and being unable to. It continued running the motor for hours, instead of for half a second, draining the battery.</p>
+
+<p>I have fixed that little gear multiple times now. Super glue seemed to hold it in place for a month or two before it came loose again. My last repair attempt used gorilla glue. The jury is still out on whether that will hold up in the long run.</p>
+
+<h3>Final thoughts</h3>
+
+<p>I really enjoy my little solar irrigation system, in spite of its flaws. It worked ever single day for almost a year before it had a failure, and it's still going with a little bit of help from me.</p>
+
+<p>One thing that could improve the system would be the ability to create more sophisticated watering schedules. The timer I used is really basic. You have a single zone in which you can set the time of day for watering and how many minutes it waters. There are times during the hottest parts of the summer in which that's not ideal because the plants need water multiple times a day to stay happy. It would also be really nice if the controller could be coupled to a soil moisture sensor as well. There are more modern version of this product with more features, and maybe eventually, I'll buy one and give it a try.</p>
