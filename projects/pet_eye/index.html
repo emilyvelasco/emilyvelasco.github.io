@@ -70,7 +70,7 @@
 <p>To understand bit blitting, think about how cartoons are made. If you want to have an animation of a car driving along a road, you could draw the entire scene, background, road and car, over and over again, drawing the car in a new position each time. But that would be stupid and a lot of work. To make things easier for yourself, you could instead draw the car on a clear sheet of plastic, and the background and road on an opaque piece. If you lay the car on top of the background, you can animate the car by repositioning its piece of plastic so the car "moves" down the road. Bit blitting is like this. You make the bitmap you want by combining smaller bitmap pieces together with code.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Wl_Vynb9hcI?start=277" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Wl_Vynb9hcI?start=277" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 <p>Now, let's think about the eye. If we want it to look left or right, we don't have to move <em>all</em> parts of the eye. We just need to move the iris and the pupil. So, we can make the white of the eye one bitmap and the iris and the pupil another bitmap. With code we can specify where the iris and pupil get laid on top of the white of the eye when they are combined. To make the eye look left, we just position the iris and pupil to the left and combine them with the white. Now we can make the eye look anywhere we want with just <em>two</em> bitmaps instead of 25. We can use the same basic process to position eyelids so that the eye blinks. What would have required 400 bitmaps can now be done with maybe 10 bitmaps that we simply pick and choose and move around. (In this case, what we actually did was create a bitmap for a white "pixel" and a black "pixel" and drew those in multiple places to create the white of the eye.)</p>
 
  <figure>
@@ -119,7 +119,7 @@
   
 <p>That meant I didn't have to do any of the kind of tricky hacking that ruined my Watchman. (This kind of video intercom was also used by bitluni in his (<a href="https://www.youtube.com/watch?v=ARo205bYEfI">CRT Game Boy project</a>). I had all the pieces I needed now, so it was time to make some aesthetic and design decisions.</p>
 
-<h3>Developing a look and feel<h3>
+<h3>Developing a look and feel</h3>
 
 <p>A the top of this page, I mentioned that my concept for this project was that it should be like a really bad video game. There was a time—it seems like—in the history of the video-game industry where everyone was trying to publish video games, whether they had the experience and skills or not. There was also a push to create educational video games that could be used in schools. The result was some really awful video games you were supposed to play while you were in the classroom. That's what I wanted this project to be: A supposedly educational video game that teaches you about the eye while sucking terribly.</p>
 
