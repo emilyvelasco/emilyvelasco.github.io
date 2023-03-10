@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<!-- Primary Meta Tags -->
+
+
+<head>
+
+  <style>
+    #main {
+      background-color: black;
+      color: white;
+      font-family: "Courier New", monospace;
+      width: 50%;
+      margin: auto;
+
+    }
+
+    img {
+
+      max-width: 100%;
+      height: auto;
+      margin: auto;
+      display: block;
+    }
+
+    a:link {
+      color: yellow;
+    }
+
+    /* visited link */
+    a:visited {
+      color: red;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+
+
+  </style>
+</head>
+
+<body id="main">
+  <h1>Your Pet Eye</h1>
+  <img src="pet_eye.jpg">
+<p>Your Pet Eye started with a simple idea: What if a video game was <u><em>really</em></u> bad?</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/H7eNHkZovpQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<p>Well, no, that's not entirely accurate. It started when I got an <a href="https://www.adafruit.com/product/3900">Adafruit Hallowing</a> in my swag bag at the 2018 Hackaday Superconference. If you're not familiar with the Hallowing, it's a little skull-shaped dev board with a small LCD screen that, when loaded with the stock software, displays an eye that looks around and blinks. We'll come back to that bad video game idea later./p>
+
+<p>I thought the Hallowing was a neat concept but I was disappointed that there is no way to control where the eye looks. It just looks where it looks.</p>
+
+<h3>TV, from an Arduino?</h3>
+
+<p>Around that same time, I was learning about TVout, an Arduino library that, with the help of an extremely simple digital-to-analog converter consisting of two resistors, outputs a composite video signal good enough to be displayed on most displays with composite input. Since it's running on an Arduino, it's a crude signal, only capable of showing black or white, and not even shades of gray. It does work though, and I think that's really neat. It really makes the most of the Arduino and can display basic text, rectangles, circles, lines, and even bitmaps.</p>
+
+<p>There was just one problem though. I didn't know enough about coding to figure out how to make the Arduino do what I wanted, which was making the eye look around in response to the user moving a joystick. Now, if I could have been satisfied with drawing a simple eye using TVout's circle and line functions, this would have been fairly easy. You just give the shapes coordinates and have some code change those coordinates in a way that's mapped to joystick position.</p>
+
+<p>But I'm too picky for that. I wanted the eye to have a certain kind of blocky look inspired by something I saw on Instagram. Displaying that as a static image was simple enough, but making it move was complicated. If I wanted the eye to have five horizontal positions and five vertical positions, that meant I would need to store 25(5x5) bitmaps, which is a lot, and that was before I thought up other features I wanted to include, like blinking and a pupil that constricts or dilates in response to ambient light. If I gave the eye a modest four frames for a blink, that would multiply the number of bitmaps to 100 (25x4). If I gave the pupil four dilation levels, that would further multiple the number of required bitmaps to 400 (100x4). Assuming that all of the Arduino's 32K of flash memory is available for storing a sketch (it's not), that would mean each bitmap could only be 80 bytes, and that's not even accounting for the memory that would be taken up by the rest of the sketch and the TVout library. Basically, it was impossible to do it this way.</p>
+
+<h3>Bit blitting: Weird name, simple concept</h3>
+
+<p>There is a way though: <a href="https://en.wikipedia.org/wiki/Bit_blit">bit blitting</a>, which is short for bit block transfer. I had never heard of this before, but my friend Roger Cheng, who has <a href="https://newscrewdriver.com/">a very nice website</a> that documents his own projects, was familiar with it, and it's what he suggested.</p>
+
+<p>To understand bit blitting, think about how cartoons are made. If you want to have an animation of a car driving along a road, you could draw the entire scene, background, road and car, over and over again, drawing the car in a new position each time. But that would be stupid and a lot of work. To make things easier for yourself, you could instead draw the car on a clear sheet of plastic, and the background and road on an opaque piece. If you lay the car on top of the background, you can animate the car by repositioning its piece of plastic so the car "moves" down the road. Bit blitting is like this. You make the bitmap you want by combining smaller bitmap pieces together with code.</p>
+
+<p>Now, let's think about the eye. If we want it to look left or right, we don't have to move <em>all</em> parts of the eye. We just need to move the iris and the pupil. So, we can make the white of the eye one bitmap and the iris and the pupil another bitmap. With code we can specify where the iris and pupil get laid on top of the white of the eye when they are combined. To make the eye look left, we just position the iris and pupil to the left and combine them with the white. Now we can make the eye look anywhere we want with just <em>two</em> bitmaps instead of 25. We can use the same basic process to position eyelids so that the eye blinks. What would have required 400 bitmaps can now be done with maybe 10 bitmaps that we simply pick and choose and move around. (In this case, what we actually did was create a bitmap for a white "pixel" and a black "pixel" and drew those in multiple places to create the white of the eye.)</p>
+
+ <figure>
+  <img src="blit1.jpg" alt="A crude drawing showing an eye split into its white, its iris and its pupil." style="width:100%">
+  <figcaption>In bit blitting, a final image is created by combining separate, smaller images using code. Here, an eye is presented as its constituent parts.</figcaption>
+</figure> 
+<br>
+ <figure>
+  <img src="blit2.jpg" alt="A crude drawing showing an eye made of combined parts." style="width:100%">
+  <figcaption>The bit blitting operation combines the smaller images into one image.</figcaption>
+</figure> 
+<br>
+ <figure>
+  <img src="blit3.jpg" alt="A crude drawing showing an eye looking to the left." style="width:100%">
+  <figcaption>To make the eye look left, you move the iris and pupil to the left when combining the images.</figcaption>
+</figure> 
+<br>
+ <figure>
+  <img src="blit4.jpg" alt="A crude drawing showing an eye looking to the right." style="width:100%">
+  <figcaption>To make the eye look right, you move the iris and pupil to the right.</figcaption>
+</figure> 
+<br>
+ <figure>
+  <img src="blit5.jpg" alt="A crude drawing showing an eye looking down." style="width:100%">
+  <figcaption>The same goes for making the eye look down.</figcaption>
+</figure>
+<br>
+ <figure>
+  <img src="blit6.jpg" alt="A crude drawing showing an eye looking up." style="width:100%">
+  <figcaption>And look up.</figcaption>
+</figure> 
+<br>
+<p>There were some other coding tricks Roger helped me with, (he wrote most of the code and supervised me writing the rest tbh) like putting things into program memory, and finding ways to optimize it so it ran fast enough to feel like an actual animation. The rest of the hard work was all in building the hardware.</p>
+
+<h3>Hardware</h3>
+
+<p>For a joystick, I used one I salvaged from an RC airplane controller. Those kinds of joysticks are basically just a lot of mechanical bits attached to two potentiometers. The potentiometers are used as voltage dividers, so when you move the stick, the voltage level on their center pin changes. If you connect those center pins to two analog input pins of the Arduino, you can electronically track the motion of the stick in the X and Y directions. Map that movement to the position of the iris and pupil in code and you have an eye that you can point in any direction using a joystick</p>
+
+<p>Making the pupil responive to light was similar. I created another voltage divider with one resistor being a photoresistor so as the light shining on it varies, so does the voltage it outputs into a third analog input pin on the Arduino. Blinking was achieved by wiring a simple pushbutton to the Arduino and writing some code to make the eye blink when the button is pushed.</p>
+
+<p>For a screen, I used one of those funky 90-degree CRTs that Sony used in their <a href="https://en.wikipedia.org/wiki/Sony_Watchman">Watchman</a> line. I actually tried to hack a Watchman itself to take composite input, but I messed something up and killed its video circuit. It still plays audio, but it has no picture. Bummer...</p>
+
+<p>After feeling bad about ruining a perfectly good Watchman and wasting $30 in the process, I went looking around on eBay again and I found a an old video intercom system that uses the same kind of CRT. It turned out that the CRT and its supporting circuitry were actually manufactured by Sony, and helpfully, they were designed to take composite video input. That meant I didn't have to do any of the kind of tricky hacking that ruined my Watchman. (This kind of video intercom was also used by bitluni in his (<a href="https://www.youtube.com/watch?v=ARo205bYEfI">CRT Game Boy project</a>). I had all the pieces I needed now, so it was time to make some aesthetic and design decisions.</p>
+
+<p>A the top of this page, I mentioned that my concept for this project was that it should be like a really bad video game. There was a time—it seems like—in the history of the video-game industry where everyone was trying to publish video games, whether they had the experience and skills or not. There was also a push to create educational video games that could be used in schools. The result was some really awful video games you were supposed to play while you were in the classroom. That's what I wanted this project to be: A supposedly educational video game that teaches you about the eye while sucking terribly.</p>
+
+<p>I decided to place this video game at a point in (alternate) history when classrooms might have had one or two Apple II computers, and I wanted the screen to look like it was a green phosphor monitor. Since the CRT from the intercom was black and white, I had to find a way to make it look green. For that I used stained-glass spray paint. If you're not familiar with it, stained glass spray paint is a special kind of spray paint that has color but goes on clear. Crafters use it for coloring plain clear glass. I had previously used it on the <a href="https://www.youtube.com/watch?v=466xZ3cexMg">Lissajukebox project</a>, and I used it again here.</p>
+
+<p>For the project's enclosure, I used a metal box that once housed a motor-speed controller, and I looked to the original Pong arcade machines as aesthetic inspiration. I had seen a photo of one on Wikipedia and its faux walnut wood grain sides and bright yellow face appealed to me. I simply reversed the color scheme and used actual walnut wood instead of faux wood laminate. I wasn't happy with the appearance or heft of the aluminum knob on the joystick I had chosen, so I turned a thicker, nicer one from an acrylic pen blank on my wood lathe.</p>
+
+
+ <figure>
+  <img src="pong.jpg" alt="A photo of a vintage pong arcade machine. The sides are faux wood and the front is yellow. There is a cathode ray tube monitor visible" style="width:100%">
+  <figcaption>Aesthetic inspiraction: A vintage Pong machine.</figcaption>
+</figure> 
+
+<p>Fitting all the parts inside the enclosure proved to be a challenge and my plan to also fit a rechargeable battery inside had to be scrapped, so power is supplied through a barrel jack. I also cheated a little and 3D printed a box that rides piggyback for holding the power switch and the jack. I really don't like how 3D prints look for finished projects in most cases, so I had to come up with a plan for making the little box match the larger metal enclosure. The process I came up with ended up looking pretty nice, and being rather involved, so I put together a little addendum video showing how that works.</p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tpFE_XsS5rE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+<h3>Other Aesthetic Decisions</h3>
+
+
+
+
+<h3>Post Project Thought</h3>
+
+<p>After finished the project, I decided I didn't care for one aspect of its behavior. As originally written, the code makes the eye get sleepy and go to sleep after its been on 90 seconds. It was a cute cheat for creating a video game with no real end, but I didn't like that you can't wake the eye back up again. You have to just turn it off and turn it back on. Since then, I've rewritten the code so you can re-awaken the eye by moving the joystick or pressing the blink button. However, I have no easy access to the Arduino inside the enclosure, and disassembling the enclosure to gain access is a pain in the butt, so the modified code is still sitting on my computer. Maybe one day I'll get around to it.</p>
+
+<p>Anyhow, big thank you to Roger for all his help with this project. It wouldn't have happened without him.</p>
+
+
+
+</p>
+</body>
+</html>
