@@ -54,7 +54,7 @@
 
 <h3>TV, from an Arduino?</h3>
 
-<p>Around that same time, I was learning about TVout, an Arduino library that, with the help of an extremely simple digital-to-analog converter consisting of two resistors, outputs a composite video signal good enough to be displayed on most displays with composite input. Since it's running on an Arduino, it's a crude signal, only capable of showing black or white, and not even shades of gray. It does work though, and I think that's really neat. It really makes the most of the Arduino and can display basic text, rectangles, circles, lines, and even bitmaps.</p>
+<p>Around that same time, I was learning about <a href="https://github.com/Avamander/arduino-tvout/">TVout</a>, an Arduino library that, with the help of an extremely simple digital-to-analog converter consisting of two resistors, outputs a composite video signal good enough to be displayed on most displays with composite input. Since it's running on an Arduino, it's a crude signal, only capable of showing black or white, and not even shades of gray. It does work though, and I think that's really neat. It really makes the most of the Arduino and can display basic text, rectangles, circles, lines, and even bitmaps.</p>
 
 <p>There was just one problem though. I didn't know enough about coding to figure out how to make the Arduino do what I wanted, which was making the eye look around in response to the user moving a joystick. Now, if I could have been satisfied with drawing a simple eye using TVout's circle and line functions, this would have been fairly easy. You just give the shapes coordinates and have some code change those coordinates in a way that's mapped to joystick position.</p>
 
@@ -110,24 +110,30 @@
 
 <p>After feeling bad about ruining a perfectly good Watchman and wasting $30 in the process, I went looking around on eBay again and I found a an old video intercom system that uses the same kind of CRT. It turned out that the CRT and its supporting circuitry were actually manufactured by Sony, and helpfully, they were designed to take composite video input. That meant I didn't have to do any of the kind of tricky hacking that ruined my Watchman. (This kind of video intercom was also used by bitluni in his (<a href="https://www.youtube.com/watch?v=ARo205bYEfI">CRT Game Boy project</a>). I had all the pieces I needed now, so it was time to make some aesthetic and design decisions.</p>
 
+<h3>Developing a look and feel<h3>
+
 <p>A the top of this page, I mentioned that my concept for this project was that it should be like a really bad video game. There was a time—it seems like—in the history of the video-game industry where everyone was trying to publish video games, whether they had the experience and skills or not. There was also a push to create educational video games that could be used in schools. The result was some really awful video games you were supposed to play while you were in the classroom. That's what I wanted this project to be: A supposedly educational video game that teaches you about the eye while sucking terribly.</p>
 
 <p>I decided to place this video game at a point in (alternate) history when classrooms might have had one or two Apple II computers, and I wanted the screen to look like it was a green phosphor monitor. Since the CRT from the intercom was black and white, I had to find a way to make it look green. For that I used stained-glass spray paint. If you're not familiar with it, stained glass spray paint is a special kind of spray paint that has color but goes on clear. Crafters use it for coloring plain clear glass. I had previously used it on the <a href="https://www.youtube.com/watch?v=466xZ3cexMg">Lissajukebox project</a>, and I used it again here.</p>
 
-<p>For the project's enclosure, I used a metal box that once housed a motor-speed controller, and I looked to the original Pong arcade machines as aesthetic inspiration. I had seen a photo of one on Wikipedia and its faux walnut wood grain sides and bright yellow face appealed to me. I simply reversed the color scheme and used actual walnut wood instead of faux wood laminate. I wasn't happy with the appearance or heft of the aluminum knob on the joystick I had chosen, so I turned a thicker, nicer one from an acrylic pen blank on my wood lathe.</p>
-
+<p>For the project's enclosure, I used a metal box that once housed a motor-speed controller, and I looked to the original Pong arcade machines as aesthetic inspiration. I had seen a photo of one on Wikipedia and its faux walnut wood grain sides and bright yellow face appealed to me. I simply reversed the color scheme and used actual walnut wood instead of faux wood laminate. 
 
  <figure>
   <img src="pong.jpg" alt="A photo of a vintage pong arcade machine. The sides are faux wood and the front is yellow. There is a cathode ray tube monitor visible" style="width:100%">
   <figcaption>Aesthetic inspiraction: A vintage Pong machine.</figcaption>
 </figure> 
 
+I wasn't happy with the appearance or heft of the aluminum knob on the joystick I had chosen, so I turned a thicker, nicer one from an acrylic pen blank on my wood lathe.</p>
+
+<img src="joystick.jpg">
+
+
 <p>Fitting all the parts inside the enclosure proved to be a challenge and my plan to also fit a rechargeable battery inside had to be scrapped, so power is supplied through a barrel jack. I also cheated a little and 3D printed a box that rides piggyback for holding the power switch and the jack. I really don't like how 3D prints look for finished projects in most cases, so I had to come up with a plan for making the little box match the larger metal enclosure. The process I came up with ended up looking pretty nice, and being rather involved, so I put together a little addendum video showing how that works.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tpFE_XsS5rE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <h3>Other Aesthetic Decisions</h3>
-<p> Since this was supposed to be a a fictional video game, I created a series of title cards for fictional publishers involved in the development of the game that load when the game is first turned on. There are also basic instructions for how to "play" the game, and a splash screen with a Your Pet Ete logo. For the fun of it, I also created a fake TV commercial for the game like it was a real product. These days there are a lot of faux-VHS filters you can apply to videos, but they all overdo it, so to make the commercial look like it was aired on TV and recorded onto a VHS, I actually recorded it onto a VHS tape using a Raspberry Pi with composite video output, and then played it back from the tape into a video capture device plugging into my computer. It looks convincingly like a VHS recording because it is a VHS recording, lol.
+<p> Since this was supposed to be a a fictional video game, I created a series of title cards for fictional publishers involved in the development of the game that load when the game is first turned on. There are also basic instructions for how to "play" the game, and a splash screen with a Your Pet Ete logo. For the fun of it, I also created a fake TV commercial for the game like it was a real product. These days there are a lot of faux-VHS filters you can apply to videos, but they all overdo it, so to make the commercial look like it was aired on TV and recorded onto a VHS, I actually recorded it onto a VHS tape using a Raspberry Pi with composite video output, and then played it back from the tape into a video capture device plugging into my computer. It looks convincingly like a VHS recording because it is a VHS recording, lol.</p>
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cL66zMolxGM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
