@@ -65,8 +65,12 @@ div.scroll {
 <p>TVout is cool and all, but sometimes you want to work in a space where more than just black and white are available. Somewhere along the line while working with TVout and my friend Roger, who you may remember from the Pet Eye project, Roger decided we needed something better. He found an ESP32 library meant for emulating 8-bit video games, took the portion of the library that generates color video, and mashed it together with the Adafruit GFX Graphics Library. The result is an <a href="https://github.com/Roger-random/ESP_8_BIT_composite">8-bit color composite library</a> that can generate a video signal with graphics in 256 colors.</p>
 
 <p>I was playing with the library one day, attempting to draw a bitmap on the screen of my portable color TV, but the image was appearing scrambled. After a lot of confusion, I realized I had set the dimensions of the bitmap incorrectly in code. All of the pixels were there, but they were in the wrong place.</p>
+  
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4agdwtxY5xQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-<p>A walk through stride What I had inadvertently discovered was something called image stride. In some image formats, the data is stored as one long string with breaks where the data is supposed to move down to the next line. It's not unlike how this sentence starts over at the beginning of the next line down once it reaches the right margin.</p>
+<h3>A walk through stride</h3>
+  
+<p>What I had inadvertently discovered was something called image stride. In some image formats, the data is stored as one long string with breaks where the data is supposed to move down to the next line. It's not unlike how this sentence starts over at the beginning of the next line down once it reaches the right margin.</p>
 
 <p>In a paragraph of text, where the words wrap to the next line doesn't really matter because you only read one line at a time, but in an image, the alignment of the horizontal lines in relationship to each other does matter. If an image is supposed to be 50 pixels wide, and you try to stuff it into a box that's only 48 pixels wide, everything gets misaligned. Let's go through an example. Here's a cute little skull we can use.</p>
 
@@ -101,6 +105,8 @@ div.scroll {
 <h3>Making the most of a mistake</h3>
 
 <p>Once I realized what had happened, I wondered what it would look like if I varied how much of an error there was in the image stride. I wrote some code that increased and decreased that error automatically, but then someone on Twitter suggested maybe I could link the image stride to the position of a potentiometer, so I could "tune in" an image on the TV screen. I did that, and it was pretty cool! But I wanted more.</p>
+  
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4agdwtxY5xQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <p>Roger's 8-bit video library includes the ability to play GIFs, and I thought it might be fun to apply this faux tuning effect to a moving image. However, I couldn't figure out how to actually make that work, since the library displays GIFs in a completely different way from how it displays bitmaps. As a workaround, I created my own "GIFs" by turning gifs into a series of bitmaps, and writing code to display each one for a fraction of a second. Then I went ahead and modified the code so that there were multiple animations that could be tuned in at different positions of the potentiometer. That looked pretty good, too, so I decided to go even further with it.  Quaint problems</p>
 
