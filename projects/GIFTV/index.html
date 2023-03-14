@@ -44,8 +44,6 @@ div.scroll {
 <body id="main">
 <h1>GIF-TV</h1>
 <img src="giftv.jpg" alt="A grainy black-and-white image of a small TV showing a cartoon rabbit on a bicycle">
-  
-<iframe width="560" height="315" src="https://www.youtube.com/embed/6In6Ii0TC2o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 <p>There was a time not so long ago when, if I stumbled across an analog TV somewhere, like at a thrift store, I could checked to see if it worked by turning the dial to channel 6. Analog TV came to an end here in the US in 2009, but for many years later (until July 13, 2021), I could reliably turn to channel 6—an analog station—and get a signal. So, what gives?</p>
 
@@ -56,10 +54,13 @@ div.scroll {
 <p>Now I have nothing! Never again will I be able to turn the dial on a TV and see stations come in and out of tune as I move up or down the band.</p>
 
 <p>But what if we could recreate that experience somehow? That's the idea behind GIF-TV.</p>
+<br>  
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6In6Ii0TC2o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<br>
 
 <h3>Messing up and getting an idea</h3>
 
-<p>If you've read my post about <a href="projects/pet_eye/index.html">Your Pet Eye</a>a>, you'll remember that I've been interested in the idea of using microcontrollers to generate composite video signals. For that project, I used a library called TVout, which generates simple black-and-white images from an Arduino and a couple of resistors.</p>
+<p>If you've read my post about <a href="projects/pet_eye/index.html">Your Pet Eye</a>, you'll remember that I've been interested in the idea of using microcontrollers to generate composite video signals. For that project, I used a library called TVout, which generates simple black-and-white images from an Arduino and a couple of resistors.</p>
 
 <p>TVout is cool and all, but sometimes you want to work in a space where more than just black and white are available. Somewhere along the line while working with TVout and my friend Roger, who you may remember from the Pet Eye project, Roger decided we needed something better. He found an ESP32 library meant for emulating 8-bit video games, took the portion of the library that generates color video, and mashed it together with the Adafruit GFX Graphics Library. The result is an <a href="https://github.com/Roger-random/ESP_8_BIT_composite">8-bit color composite library</a> that can generate a video signal with graphics in 256 colors.</p>
 
@@ -75,15 +76,15 @@ div.scroll {
 
 <img src="stride1.5.png">
 
-<p>Now, if we put a 48-pixel-wide boundary box around it, we can see that on each line, two pixels are sticking out of the box. Those pixels have to go somewhere, so they wrap down to the next line.
+<p>Now, if we put a 48-pixel-wide boundary box around it, we can see that on each line, two pixels are sticking out of the box. Those pixels have to go somewhere, so they wrap down to the next line.</p>
 
 <img src="stride1.8.png">
 
-This pushes all the pixels on that next line over by two positions. 
+<p>This pushes all the pixels on that next line over by two positions.</p>
 
 <img src="stride1.9.png">
 
-Since that line was already two pixels too wide for the box, it will have four pixels hanging over. Those four pixels will then wrap to the next line, and the next, all the way to the end of the image's data.</p>
+<p>Since that line was already two pixels too wide for the box, it will have four pixels hanging over. Those four pixels will then wrap to the next line, and the next, all the way to the end of the image's data.</p>
 
 <img src="stride3.png">
 
