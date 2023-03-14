@@ -110,6 +110,8 @@ div.scroll {
 
 <p>Roger's 8-bit video library includes the ability to play GIFs, and I thought it might be fun to apply this faux tuning effect to a moving image. However, I couldn't figure out how to actually make that work, since the library displays GIFs in a completely different way from how it displays bitmaps. As a workaround, I created my own "GIFs" by turning gifs into a series of bitmaps, and writing code to display each one for a fraction of a second. Then I went ahead and modified the code so that there were multiple animations that could be tuned in at different positions of the potentiometer. That looked pretty good, too, so I decided to go even further with it.</p>
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KhQJtwADJiM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+  
 <h3>Quaint problems</h3>
 
 <p>In the old days of analog TV, there were two picture adjustments you won't see anymore: horizontal hold and vertical hold. Horizontal hold kept the picture correctly aligned from left to right. When it was incorrectly adjusted, you got a kind of distortion that looks pretty similar to what I found when I set my image stride incorrectly.</p>
@@ -136,6 +138,8 @@ div.scroll {
 <h3>Hardware</h3>
 
 <p>Whenever I'm at the thrift store and I see a little portable TV for a decent price, I grab it. They are getting harder to find, and they're getting more expensive, but occasionally I can still find one for about $7. They can be useful if you are running a pirate TV station out of your closet (not that I would do that) and they can be hacked most of the time to take composite input most of the time. Once you make that modification, you can connect them to a Raspberry Pi, to a VCR, or to an ESP32.</p>
+  
+<img src="composite.jpg">
 
 <p>For this project, I used a Goldbeam brand TV that I found while thrifting because I had hacked it for composite input, it had a look that I enjoyed, and it had a large battery compartment where I could hide the ESP32 and a buck converter that would turn the 12V from the TV's power supply into 5V for the ESP32.</p>
 
