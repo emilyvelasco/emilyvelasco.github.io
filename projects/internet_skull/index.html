@@ -79,6 +79,8 @@
 <p>My decision to use RGB LEDs came with a small problem that I had to sort out. Eli's project connects the LEDS between two GPIO pins and ground. To turn an LED on, it sets one of those pins to HIGH and current flows from the pin, through the LED to ground. With most RGB LEDs, this would be fine, because they are designed so the red, green, and blue elements (dies) share a ground and have separate positive leads. However, the LEDs I chose were common anode, which means the red, green, and blue dies inside the LED share a positive lead and have separate grounds.</p>
 
 <p>Fortunately there's a pretty simple solution to this. An Arduino's GPIO pins can both source and sink current, meaning they can output a voltage to ground, or they can accept a voltage from the Arduino's power rail. So, to use common-anode LEDs, we just connect their positive lead (the anode) to the Arduino's 3.3V pin and their negative leads (the cathodes) to two GPIO pins. For an explanation of how to wire common-cathode and common-anode LEDS, visit: <a href="https://makeabilitylab.github.io/physcomp/arduino/rgb-led.html#common-anode">Physical Computing - Lesson 6: RGB LEDs</a></p>
+  
+<img src="RGB_LED.gif" alt="An animated gif showing how current flows through a common-anode RGB LED">
 
 <h3>The Code</h3>
 
@@ -89,5 +91,93 @@
 <p>This was a dumb little project that may be kind of useful. The more I think about it, the more I think it needs an audio alarm for when the internet comes back on. Right now, if I decide to read a book or I go in the other room, I won't know if the internet is back without actually looking at the Oracle. A buzzer would let me know without me having to pay active attention, and I could just add a switch to disconnect the buzzer if I don't want it to bother me while I sleep. Or I could just turn the thing on only when I'm having an internet outage. We'll see. It would only take a few lines of code and maybe 10 minutes of soldering.</p>
 
 <p>I might also change my mind about the color I painted the enclosure. I first painted it a safety yellow color like you might see on industrial equipment but then I repainted with a green hammertone finish. I think I liked the yellow better though, so I might repaint it again.</p>
+  
+<div class="scroll"><pre><code>
+/*This project requires an Arduino Nano 33 IoT.
+Arduino sells other Wi-Fi enabled Arduinos that 
+may work, but I've not tested them with this code.
+
+It was pieced together from some other bits of code, 
+mostly by Aucoeur Ngo, who was helpfully helping me
+troubleshoot why my code wasn't working
+https://stine.omg.lol/
+*/
+
+#include <WiFiNINA.h>
+
+/*wire LEDs to pins 9 and 10 with appropriate resistors.
+This should be about 40-50 ohms for an Arduino with
+3.3V output on its IO pins*/
+#define googleOnlineLED 10
+#define googleOfflineLED 9
+
+//your wifi credentials go here
+char ssid[] = "network name";
+char pass[] = "password";
+
+int status = WL_IDLE_STATUS;
+
+//put whichever reliable website you want right here
+char google[] = "google.com";
+
+WiFiClient client;
+
+void setup() {
+  pinMode(googleOnlineLED, OUTPUT);
+  pinMode(googleOfflineLED, OUTPUT);
+  digitalWrite(googleOnlineLED, LOW);
+  digitalWrite(googleOfflineLED, LOW);
+
+ /*all the serial comms stuff can be removed, but it's 
+  helpful for troubleshooting*/
+  Serial.begin(9600);
+
+  while (status != WL_CONNECTED) {
+    Serial.print("Attempting to connect to Network named: ");
+    Serial.println(ssid);
+    status = WiFi.begin(ssid, pass);
+    delay(10000);
+  }
+
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+  IPAddress ip = WiFi.localIP();
+  IPAddress gateway = WiFi.gatewayIP();
+  Serial.print("IP Address: ");
+  Serial.println(ip);
+  Serial.print("Default Gateway: ");
+  Serial.println(gateway);
+}
+
+void loop() {
+  Serial.print("status before client.stop(): ");
+  Serial.println(client.status());
+
+  client.stop();
+
+  Serial.print("status after client.stop(): ");
+  Serial.println(client.status());
+
+  if (client.connect(google, 80)) {
+    Serial.print("status inside if client.connect(): ");
+    Serial.println(client.status());
+    Serial.print("Google is ONLINE at:  ");
+    Serial.println(client.remoteIP());
+    digitalWrite(googleOnlineLED, LOW);
+    digitalWrite(googleOfflineLED, HIGH);
+  }
+  else {
+    Serial.print("status inside else client.connect(): ");
+    Serial.println(client.status());
+    Serial.println("Google is OFFLINE");
+    digitalWrite(googleOnlineLED, HIGH);
+    digitalWrite(googleOfflineLED, LOW);
+  }
+  
+  delay(2000);
+}
+</code></pre></div>
+<br>
+<br>
 </body>
 </html>
