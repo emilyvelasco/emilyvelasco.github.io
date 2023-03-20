@@ -78,10 +78,12 @@
 
 
 <p>I didn't have an Arduino Uno WiFi, but I did have an Arduino Nano 33 IoT, which is also capable of connecting to a Wi-Fi network, so I used that as the basis for this project. I liked Eli's red/green status indicator idea, so I decided to do that as well. Originally I intended to make the project beep when the internet comes back on, but the more I thought about it, the more I wondered if that's what I really wanted. What if the internet goes out at 2 a.m. and comes back at 3:15? Do I want to be awoken for that? Not really, so I dropped the buzzer idea from the project.</p>
+  
+<p>I originally meant to make this as a basic little box, maybe kind of resembling a traffic light, but that seemed boring to me. I was staring at the shelf where the project was going to sit, which is the closest spot in my house to the wireless router and trying to think about what would look good there. That shelf is coincidentally also my shelf of skulls. Then it occurred to me: I really need an internet-connected skull in my life.</p>  
 
-<p>I originally meant to make this a basic little box, maybe kind of resembling a traffic light, but that seemed boring to me. I wanted to do something different and stupider than that. While looking at the shelf where I intended to put the little box, which happens to house my skull collection, I realized that this projected needed a skull and that its eyes should be the internet status indicators.</p>
+<p>I chose a realistic, but fake cat skull I had in my collection because I felt less bad about gluing stuff to it than I would doing the same to any of my real skulls As an interesting aside, I’ll mention that the skull was 3D printed for me by Tinkerz over on Twitter out of some special filament that is designed to mimic bone on X-rays. It feels kind of like bone as well, or at least it feels more boney than typical 3D prints.</p>
 
-<p>I chose a realistic, but fake cat skull I had in my collection because I felt less bad about gluing stuff to it than I would doing the same to any of my real skulls. To give the project a kind of brain-in-a-jar feel while hiding the Arduino, I stuffed everything inside a security camera housing I found by a homeless camp down in the river bed near my home. To make the skull's "eyes" change color, I used a pair of RGB LEDs I dug out of my stuff in the garage and put them inside a pair of round diffusers that came off a dollar-store LED sign. I used all red wiring to make the connections to the LED eyes look like muscle or sinew or nerves, or something biological like that.</p>
+<p>To give the project a kind of brain-in-a-jar feel while hiding the Arduino, I stuffed everything inside a security camera housing I found by a homeless camp down in the river bed near my home. To make the skull's "eyes" change color, I used a pair of RGB LEDs I dug out of my stuff in the garage and put them inside a pair of round diffusers that came off a dollar-store LED sign. I used all red wiring to make the connections to the LED eyes look like muscle or sinew or nerves, or something biological like that.</p>
 
 <h3>Wiring</h3>
 
@@ -100,7 +102,9 @@
 <p>This was a dumb little project that may be kind of useful. The more I think about it, the more I think it needs an audio alarm for when the internet comes back on. Right now, if I decide to read a book or I go in the other room, I won't know if the internet is back without actually looking at the Oracle. A buzzer would let me know without me having to pay active attention, and I could just add a switch to disconnect the buzzer if I don't want it to bother me while I sleep. Or I could just turn the thing on only when I'm having an internet outage. We'll see. It would only take a few lines of code and maybe 10 minutes of soldering.</p>
 
 <p>I might also change my mind about the color I painted the enclosure. I first painted it a safety yellow color like you might see on industrial equipment but then I repainted with a green hammertone finish. I think I liked the yellow better though, so I might repaint it again.</p>
-  
+<br>
+<br>
+<br>
 <div class="scroll"><pre><code>
 /*This project requires an Arduino Nano 33 IoT.
 Arduino sells other Wi-Fi enabled Arduinos that 
