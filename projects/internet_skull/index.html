@@ -85,6 +85,8 @@
 
 <p>To give the project a kind of brain-in-a-jar feel while hiding the Arduino, I stuffed everything inside a security camera housing I found by a homeless camp down in the river bed near my home. To make the skull's "eyes" change color, I used a pair of RGB LEDs I dug out of my stuff in the garage and put them inside a pair of round diffusers that came off a dollar-store LED sign. I used all red wiring to make the connections to the LED eyes look like muscle or sinew or nerves, or something biological like that.</p>
 
+<img src="skull.gif" alt="An animated gif of the skull's eyes cycling between red and green.">
+
 <h3>Wiring</h3>
 
 <p>My decision to use RGB LEDs came with a small problem that I had to sort out. Eli's project connects the LEDS between two GPIO pins and ground. To turn an LED on, it sets one of those pins to HIGH and current flows from the pin, through the LED to ground. With most RGB LEDs, this would be fine, because they are designed so the red, green, and blue elements (dies) share a ground and have separate positive leads. However, the LEDs I chose were common anode, which means the red, green, and blue dies inside the LED share a positive lead and have separate grounds.</p>
@@ -98,6 +100,8 @@
 <p>It turned out that Eli's code didn't work quite right in my project. It connected to the internet like it should, and it pinged Google like it should, but when I disconnected my home network from the internet, the Arduino would only indicate a ping failure once before erroneously indicating that it was successfully pinging Google again. It did this even if there was no internet connection. Some folks in the Arduino forums suggested that there are some problems with the WifiNINA, but I never did figure out why the code didn't work the way it was supposed to. My friend Aucoeur Ngo couldn't figure out either, but she helpfully rewrote the code to use a different function of the WiFiNINA library that actually did work correctly. You can get that code from my <a href="https://github.com/emilyvelasco/internet-monitor/blob/main/internet_monitor.ino">Github repository</a> or find it pasted below, after the final thoughts section.</p>
 
 <h3>Final Thoughts</h3>
+
+<img src="skull.jpg" alt="The skull sits on its shelf with my other skulls. Its eyes are glowing green.">
 
 <p>This was a dumb little project that may be kind of useful. The more I think about it, the more I think it needs an audio alarm for when the internet comes back on. Right now, if I decide to read a book or I go in the other room, I won't know if the internet is back without actually looking at the Oracle. A buzzer would let me know without me having to pay active attention, and I could just add a switch to disconnect the buzzer if I don't want it to bother me while I sleep. Or I could just turn the thing on only when I'm having an internet outage. We'll see. It would only take a few lines of code and maybe 10 minutes of soldering.</p>
 
